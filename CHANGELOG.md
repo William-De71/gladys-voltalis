@@ -5,7 +5,7 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions
 follow [Semantic Versioning](https://semver.org/). This file is generated at
 each release from the Conventional Commits: do not edit it by hand.
 
-## [0.1.0] - unreleased
+## [0.1.0] - 2026-11-16
 
 ### Added
 
@@ -17,3 +17,5 @@ each release from the Conventional Commits: do not edit it by hand.
 - Scene actions: set a manual mode for a duration or until further notice, go back to the program, switch a quick setting or one of your programs, read the appliances now.
 - Dashboard widgets: the appliances (mode, program or manual, faults, "Back to program" and "Frost protection"), the energy of today, of yesterday and of the last 24 hours, and the connection to Voltalis.
 - English, French, German and Spanish everywhere: settings, devices, widgets, scenes and documentation.
+
+[0.1.0]: https://github.com/William-De71/gladys-voltalis/releases/tag/v0.1.0
