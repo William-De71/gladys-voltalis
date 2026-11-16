@@ -1,0 +1,385 @@
+{
+  "devices": {
+    "heater": {
+      "external_id": "ext:test-integration:appliance:101",
+      "should_poll": false,
+      "params": ["VOLTALIS_TYPE", "VOLTALIS_MODES"],
+      "features": [
+        {
+          "external_id": "ext:test-integration:appliance:101:mode",
+          "category": "thermostat",
+          "type": "mode",
+          "min": 0,
+          "max": 3,
+          "read_only": false,
+          "has_feedback": true,
+          "supported_options": [0, 1, 3]
+        },
+        {
+          "external_id": "ext:test-integration:appliance:101:preset",
+          "category": "thermostat",
+          "type": "preset",
+          "min": 0,
+          "max": 5,
+          "read_only": false,
+          "has_feedback": true,
+          "supported_options": []
+        },
+        {
+          "external_id": "ext:test-integration:appliance:101:target_temperature",
+          "category": "thermostat",
+          "type": "target-temperature",
+          "unit": "celsius",
+          "min": 7,
+          "max": 30,
+          "step": 0.5,
+          "read_only": false,
+          "has_feedback": true,
+          "supported_options": []
+        },
+        {
+          "external_id": "ext:test-integration:appliance:101:energy",
+          "category": "energy-sensor",
+          "type": "index",
+          "unit": "kilowatt-hour",
+          "min": 0,
+          "max": 10000000,
+          "read_only": true,
+          "has_feedback": false,
+          "supported_options": []
+        }
+      ]
+    },
+    "heater_without_temperature": {
+      "external_id": "ext:test-integration:appliance:102",
+      "should_poll": false,
+      "params": ["VOLTALIS_TYPE", "VOLTALIS_MODES"],
+      "features": [
+        {
+          "external_id": "ext:test-integration:appliance:102:mode",
+          "category": "thermostat",
+          "type": "mode",
+          "min": 0,
+          "max": 3,
+          "read_only": false,
+          "has_feedback": true,
+          "supported_options": [0, 1, 3]
+        },
+        {
+          "external_id": "ext:test-integration:appliance:102:preset",
+          "category": "thermostat",
+          "type": "preset",
+          "min": 0,
+          "max": 5,
+          "read_only": false,
+          "has_feedback": true,
+          "supported_options": []
+        },
+        {
+          "external_id": "ext:test-integration:appliance:102:energy",
+          "category": "energy-sensor",
+          "type": "index",
+          "unit": "kilowatt-hour",
+          "min": 0,
+          "max": 10000000,
+          "read_only": true,
+          "has_feedback": false,
+          "supported_options": []
+        }
+      ]
+    },
+    "relay": {
+      "external_id": "ext:test-integration:appliance:103",
+      "should_poll": false,
+      "params": ["VOLTALIS_TYPE", "VOLTALIS_MODES"],
+      "features": [
+        {
+          "external_id": "ext:test-integration:appliance:103:mode",
+          "category": "thermostat",
+          "type": "mode",
+          "min": 0,
+          "max": 3,
+          "read_only": false,
+          "has_feedback": true,
+          "supported_options": [0, 1, 3]
+        },
+        {
+          "external_id": "ext:test-integration:appliance:103:energy",
+          "category": "energy-sensor",
+          "type": "index",
+          "unit": "kilowatt-hour",
+          "min": 0,
+          "max": 10000000,
+          "read_only": true,
+          "has_feedback": false,
+          "supported_options": []
+        }
+      ]
+    },
+    "site": {
+      "external_id": "ext:test-integration:site:4242",
+      "should_poll": false,
+      "params": ["VOLTALIS_SITE"],
+      "features": [
+        {
+          "external_id": "ext:test-integration:site:4242:power",
+          "category": "energy-sensor",
+          "type": "power",
+          "unit": "watt",
+          "min": 0,
+          "max": 40000,
+          "read_only": true,
+          "has_feedback": false,
+          "supported_options": []
+        },
+        {
+          "external_id": "ext:test-integration:site:4242:energy",
+          "category": "energy-sensor",
+          "type": "index",
+          "unit": "kilowatt-hour",
+          "min": 0,
+          "max": 10000000,
+          "read_only": true,
+          "has_feedback": false,
+          "supported_options": []
+        }
+      ]
+    }
+  },
+  "manifest": {
+    "config_schema": [
+      {
+        "key": "intro",
+        "type": "section"
+      },
+      {
+        "key": "email",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "type": "secret"
+      },
+      {
+        "key": "refresh_minutes",
+        "type": "select"
+      },
+      {
+        "key": "language",
+        "type": "select"
+      }
+    ],
+    "config_options": {
+      "refresh_minutes": ["1", "2", "5", "10"],
+      "language": ["auto", "en", "fr", "de", "es"]
+    },
+    "actions": ["test_connection"],
+    "widgets": [
+      {
+        "key": "appliances",
+        "settings": ["devices"]
+      },
+      {
+        "key": "energy",
+        "settings": ["devices"]
+      },
+      {
+        "key": "status",
+        "settings": []
+      }
+    ],
+    "widget_actions": ["all_auto", "all_frost", "refresh"],
+    "scene_triggers": [
+      {
+        "key": "mode_changed",
+        "fields": [
+          {
+            "key": "device",
+            "options": []
+          },
+          {
+            "key": "mode",
+            "options": ["comfort", "eco", "frost", "temperature", "normal", "off"]
+          }
+        ],
+        "variables": [
+          {
+            "key": "device",
+            "type": "string"
+          },
+          {
+            "key": "device_name",
+            "type": "string"
+          },
+          {
+            "key": "mode",
+            "type": "string"
+          },
+          {
+            "key": "previous_mode",
+            "type": "string"
+          },
+          {
+            "key": "manual",
+            "type": "boolean"
+          },
+          {
+            "key": "target_temperature",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "key": "appliance_fault",
+        "fields": [
+          {
+            "key": "device",
+            "options": []
+          }
+        ],
+        "variables": [
+          {
+            "key": "device",
+            "type": "string"
+          },
+          {
+            "key": "device_name",
+            "type": "string"
+          },
+          {
+            "key": "status",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "key": "appliance_recovered",
+        "fields": [
+          {
+            "key": "device",
+            "options": []
+          }
+        ],
+        "variables": [
+          {
+            "key": "device",
+            "type": "string"
+          },
+          {
+            "key": "device_name",
+            "type": "string"
+          },
+          {
+            "key": "status",
+            "type": "string"
+          },
+          {
+            "key": "previous_status",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "scene_actions": [
+      {
+        "key": "set_manual",
+        "fields": [
+          {
+            "key": "device",
+            "options": []
+          },
+          {
+            "key": "mode",
+            "options": ["comfort", "eco", "frost", "temperature", "normal", "off"]
+          },
+          {
+            "key": "temperature",
+            "options": []
+          },
+          {
+            "key": "hours",
+            "options": []
+          }
+        ],
+        "outputs": [
+          {
+            "key": "count",
+            "type": "number"
+          },
+          {
+            "key": "failed",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "key": "back_to_program",
+        "fields": [
+          {
+            "key": "device",
+            "options": []
+          }
+        ],
+        "outputs": [
+          {
+            "key": "count",
+            "type": "number"
+          },
+          {
+            "key": "failed",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "key": "set_program",
+        "fields": [
+          {
+            "key": "program",
+            "options": ["athome", "shortleave", "longleave", "user"]
+          },
+          {
+            "key": "name",
+            "options": []
+          },
+          {
+            "key": "state",
+            "options": ["on", "off"]
+          }
+        ],
+        "outputs": [
+          {
+            "key": "program",
+            "type": "string"
+          },
+          {
+            "key": "enabled",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "key": "refresh",
+        "fields": [],
+        "outputs": [
+          {
+            "key": "appliances",
+            "type": "number"
+          },
+          {
+            "key": "manual",
+            "type": "number"
+          },
+          {
+            "key": "power",
+            "type": "number"
+          },
+          {
+            "key": "energy_today",
+            "type": "number"
+          }
+        ]
+      }
+    ]
+  }
+}

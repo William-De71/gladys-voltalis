@@ -1,0 +1,1079 @@
+{
+  "manifest_version": 1,
+  "type": "device",
+  "name": "Voltalis",
+  "description": {
+    "en": "Voltalis box: heaters, water heater, modes, programs, consumption, scenes and widgets.",
+    "fr": "Boîtier Voltalis : radiateurs, chauffe-eau, modes, programmes, consommation, scènes et widgets.",
+    "de": "Voltalis-Box: Heizgeräte, Warmwasser, Modi, Programme, Verbrauch, Szenen und Widgets.",
+    "es": "Caja Voltalis: radiadores, calentador, modos, programas, consumo, escenas y widgets."
+  },
+  "version": "0.1.0",
+  "docker_image": "ghcr.io/william-de71/gladys-voltalis:0.1.0",
+  "gladys_version": ">=5.3.0",
+  "categories": ["climate", "energy"],
+  "keywords": [
+    "voltalis",
+    "myvoltalis",
+    "effacement",
+    "fil pilote",
+    "pilot wire",
+    "radiateur",
+    "chauffe-eau",
+    "chauffage électrique",
+    "hors-gel",
+    "water heater"
+  ],
+  "countries": ["FR"],
+  "cover_image": "https://raw.githubusercontent.com/William-De71/gladys-voltalis/main/cover.jpg",
+  "transports": ["cloud"],
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "label": {
+        "en": "Voltalis",
+        "fr": "Voltalis",
+        "de": "Voltalis",
+        "es": "Voltalis"
+      },
+      "description": {
+        "en": "How to connect:\n1. Check that you can sign in to the MyVoltalis app or to myvoltalis.com with your e-mail and password.\n2. Enter the same e-mail and password below.\n3. In the Discover tab, add your appliances and the “Voltalis home” device.\nThe integration uses the service behind the MyVoltalis app, which Voltalis does not document: it may change without notice. A command reaches the appliances through the Voltalis cloud, and a change made in the app reaches Gladys at the next reading.",
+        "fr": "Pour se connecter :\n1. Vérifiez que vous pouvez vous connecter à l’application MyVoltalis ou à myvoltalis.com avec votre e-mail et votre mot de passe.\n2. Saisissez ci-dessous ce même e-mail et ce même mot de passe.\n3. Dans l’onglet Découverte, ajoutez vos appareils et l’appareil « Logement Voltalis ».\nL’intégration utilise le service de l’application MyVoltalis, que Voltalis ne documente pas : il peut changer sans préavis. Une commande atteint les appareils par le cloud Voltalis, et un changement fait dans l’application atteint Gladys au relevé suivant.",
+        "de": "So verbinden Sie sich:\n1. Prüfen Sie, dass Sie sich mit E-Mail und Passwort in der MyVoltalis-App oder auf myvoltalis.com anmelden können.\n2. Geben Sie unten dieselbe E-Mail und dasselbe Passwort ein.\n3. Fügen Sie im Reiter Entdecken Ihre Geräte und das Gerät „Voltalis-Zuhause“ hinzu.\nDie Integration nutzt den Dienst hinter der MyVoltalis-App, den Voltalis nicht dokumentiert: Er kann sich ohne Vorankündigung ändern. Ein Befehl erreicht die Geräte über die Voltalis-Cloud, und eine Änderung in der App erreicht Gladys bei der nächsten Abfrage.",
+        "es": "Cómo conectarse:\n1. Compruebe que puede iniciar sesión en la app MyVoltalis o en myvoltalis.com con su correo y su contraseña.\n2. Introduzca abajo ese mismo correo y esa misma contraseña.\n3. En la pestaña Descubrir, añada sus aparatos y el dispositivo «Vivienda Voltalis».\nLa integración usa el servicio de la app MyVoltalis, que Voltalis no documenta: puede cambiar sin previo aviso. Una orden llega a los aparatos por la nube de Voltalis, y un cambio hecho en la app llega a Gladys en la siguiente lectura."
+      },
+      "links": [
+        {
+          "url": "https://myvoltalis.com",
+          "label": {
+            "en": "MyVoltalis (customer area)",
+            "fr": "MyVoltalis (espace client)",
+            "de": "MyVoltalis (Kundenbereich)",
+            "es": "MyVoltalis (área de cliente)"
+          }
+        },
+        {
+          "url": "https://github.com/William-De71/gladys-voltalis/blob/main/docs/fr.md",
+          "label": {
+            "en": "Documentation (French)",
+            "fr": "Documentation",
+            "de": "Dokumentation (Französisch)",
+            "es": "Documentación (francés)"
+          }
+        },
+        {
+          "url": "https://github.com/William-De71/gladys-voltalis/blob/main/docs/en.md",
+          "label": {
+            "en": "Documentation",
+            "fr": "Documentation (anglais)",
+            "de": "Dokumentation (Englisch)",
+            "es": "Documentación (inglés)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "email",
+      "type": "string",
+      "required": true,
+      "label": {
+        "en": "E-mail",
+        "fr": "E-mail",
+        "de": "E-Mail",
+        "es": "Correo electrónico"
+      },
+      "description": {
+        "en": "The e-mail of your MyVoltalis account.",
+        "fr": "L’e-mail de votre compte MyVoltalis.",
+        "de": "Die E-Mail Ihres MyVoltalis-Kontos.",
+        "es": "El correo de su cuenta MyVoltalis."
+      },
+      "placeholder": {
+        "en": "name@example.com",
+        "fr": "name@example.com",
+        "de": "name@example.com",
+        "es": "name@example.com"
+      }
+    },
+    {
+      "key": "password",
+      "type": "secret",
+      "required": true,
+      "label": {
+        "en": "Password",
+        "fr": "Mot de passe",
+        "de": "Passwort",
+        "es": "Contraseña"
+      },
+      "description": {
+        "en": "The password of your MyVoltalis account. Sent to Voltalis only, never shown again.",
+        "fr": "Le mot de passe de votre compte MyVoltalis. Envoyé à Voltalis uniquement, jamais réaffiché.",
+        "de": "Das Passwort Ihres MyVoltalis-Kontos. Wird nur an Voltalis gesendet und nie wieder angezeigt.",
+        "es": "La contraseña de su cuenta MyVoltalis. Solo se envía a Voltalis y nunca se vuelve a mostrar."
+      },
+      "placeholder": {
+        "en": "Password",
+        "fr": "Mot de passe",
+        "de": "Passwort",
+        "es": "Contraseña"
+      }
+    },
+    {
+      "key": "refresh_minutes",
+      "type": "select",
+      "label": {
+        "en": "Reading interval",
+        "fr": "Intervalle de relevé",
+        "de": "Abfrageintervall",
+        "es": "Intervalo de lectura"
+      },
+      "options": [
+        {
+          "value": "1",
+          "label": {
+            "en": "Every 1 min",
+            "fr": "Toutes les 1 min",
+            "de": "Alle 1 Min.",
+            "es": "Cada 1 min"
+          }
+        },
+        {
+          "value": "2",
+          "label": {
+            "en": "Every 2 min",
+            "fr": "Toutes les 2 min",
+            "de": "Alle 2 Min.",
+            "es": "Cada 2 min"
+          }
+        },
+        {
+          "value": "5",
+          "label": {
+            "en": "Every 5 min",
+            "fr": "Toutes les 5 min",
+            "de": "Alle 5 Min.",
+            "es": "Cada 5 min"
+          }
+        },
+        {
+          "value": "10",
+          "label": {
+            "en": "Every 10 min",
+            "fr": "Toutes les 10 min",
+            "de": "Alle 10 Min.",
+            "es": "Cada 10 min"
+          }
+        }
+      ],
+      "default": "2",
+      "description": {
+        "en": "One request reads every appliance. The diagnosis and the consumption are read less often (10 and 15 minutes).",
+        "fr": "Une seule requête relève tous les appareils. Le diagnostic et la consommation sont relevés moins souvent (10 et 15 minutes).",
+        "de": "Eine Anfrage liest alle Geräte. Diagnose und Verbrauch werden seltener gelesen (10 und 15 Minuten).",
+        "es": "Una sola petición lee todos los aparatos. El diagnóstico y el consumo se leen con menos frecuencia (10 y 15 minutos)."
+      }
+    },
+    {
+      "key": "language",
+      "type": "select",
+      "label": {
+        "en": "Language of the device texts",
+        "fr": "Langue des textes des appareils",
+        "de": "Sprache der Gerätetexte",
+        "es": "Idioma de los textos de los dispositivos"
+      },
+      "options": [
+        {
+          "value": "auto",
+          "label": {
+            "en": "Automatic",
+            "fr": "Automatique",
+            "de": "Automatisch",
+            "es": "Automático"
+          }
+        },
+        {
+          "value": "en",
+          "label": {
+            "en": "English",
+            "fr": "Anglais",
+            "de": "Englisch",
+            "es": "Inglés"
+          }
+        },
+        {
+          "value": "fr",
+          "label": {
+            "en": "French",
+            "fr": "Français",
+            "de": "Französisch",
+            "es": "Francés"
+          }
+        },
+        {
+          "value": "de",
+          "label": {
+            "en": "German",
+            "fr": "Allemand",
+            "de": "Deutsch",
+            "es": "Alemán"
+          }
+        },
+        {
+          "value": "es",
+          "label": {
+            "en": "Spanish",
+            "fr": "Espagnol",
+            "de": "Spanisch",
+            "es": "Español"
+          }
+        }
+      ],
+      "default": "auto",
+      "description": {
+        "en": "Names of the features and messages of the button below. Automatic: the language of the dashboard once a widget is shown.",
+        "fr": "Noms des fonctionnalités et messages du bouton ci-dessous. Automatique : la langue du tableau de bord dès qu’un widget est affiché.",
+        "de": "Namen der Funktionen und Meldungen der Schaltfläche unten. Automatisch: die Sprache des Dashboards, sobald ein Widget angezeigt wird.",
+        "es": "Nombres de las funciones y mensajes del botón de abajo. Automático: el idioma del panel en cuanto se muestra un widget."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "key": "test_connection",
+      "timeout_seconds": 60,
+      "label": {
+        "en": "Test the connection",
+        "fr": "Tester la connexion",
+        "de": "Verbindung testen",
+        "es": "Probar la conexión"
+      },
+      "description": {
+        "en": "Reads the appliances of the account now and lists them, with what they do and their features.",
+        "fr": "Relève maintenant les appareils du compte et les liste, avec ce qu’ils font et leurs fonctionnalités.",
+        "de": "Liest jetzt die Geräte des Kontos und listet sie mit ihrem Zustand und ihren Funktionen auf.",
+        "es": "Lee ahora los aparatos de la cuenta y los lista, con lo que hacen y sus funciones."
+      }
+    }
+  ],
+  "widgets": [
+    {
+      "key": "appliances",
+      "icon": "thermometer",
+      "label": {
+        "en": "Voltalis appliances",
+        "fr": "Appareils Voltalis",
+        "de": "Voltalis-Geräte",
+        "es": "Aparatos Voltalis"
+      },
+      "description": {
+        "en": "Each appliance: mode, program or manual, faults; back to program, frost protection.",
+        "fr": "Chaque appareil : mode, programme ou manuel, défauts ; retour au programme, hors-gel.",
+        "de": "Jedes Gerät: Modus, Programm oder manuell, Störungen; zurück zum Programm, Frostschutz.",
+        "es": "Cada aparato: modo, programa o manual, averías; volver al programa, antihielo."
+      },
+      "settings": [
+        {
+          "key": "devices",
+          "type": "multi_select",
+          "source": "devices",
+          "label": {
+            "en": "Appliances",
+            "fr": "Appareils",
+            "de": "Geräte",
+            "es": "Aparatos"
+          },
+          "description": {
+            "en": "Empty: every appliance.",
+            "fr": "Vide : tous les appareils.",
+            "de": "Leer: alle Geräte.",
+            "es": "Vacío: todos los aparatos."
+          }
+        }
+      ],
+      "action_timeout_seconds": 90
+    },
+    {
+      "key": "energy",
+      "icon": "zap",
+      "label": {
+        "en": "Voltalis energy",
+        "fr": "Énergie Voltalis",
+        "de": "Voltalis-Energie",
+        "es": "Energía Voltalis"
+      },
+      "description": {
+        "en": "Energy of today and yesterday, power now, last 24 hours by hour.",
+        "fr": "Énergie d’aujourd’hui et d’hier, puissance actuelle, dernières 24 heures par heure.",
+        "de": "Energie von heute und gestern, aktuelle Leistung, letzte 24 Stunden stündlich.",
+        "es": "Energía de hoy y de ayer, potencia actual, últimas 24 horas por hora."
+      },
+      "settings": [
+        {
+          "key": "devices",
+          "type": "multi_select",
+          "source": "devices",
+          "label": {
+            "en": "Appliances",
+            "fr": "Appareils",
+            "de": "Geräte",
+            "es": "Aparatos"
+          },
+          "description": {
+            "en": "Empty: the whole home.",
+            "fr": "Vide : tout le logement.",
+            "de": "Leer: das ganze Zuhause.",
+            "es": "Vacío: toda la vivienda."
+          }
+        }
+      ],
+      "action_timeout_seconds": 60
+    },
+    {
+      "key": "status",
+      "icon": "cloud",
+      "label": {
+        "en": "Voltalis",
+        "fr": "Voltalis",
+        "de": "Voltalis",
+        "es": "Voltalis"
+      },
+      "description": {
+        "en": "Connection to Voltalis, appliances in manual mode, faults, requests of the last hour.",
+        "fr": "Connexion à Voltalis, appareils en mode manuel, défauts, requêtes de la dernière heure.",
+        "de": "Verbindung zu Voltalis, Geräte im manuellen Modus, Störungen, Anfragen der letzten Stunde.",
+        "es": "Conexión a Voltalis, aparatos en modo manual, averías, peticiones de la última hora."
+      },
+      "action_timeout_seconds": 60
+    }
+  ],
+  "scene_triggers": [
+    {
+      "key": "mode_changed",
+      "label": {
+        "en": "The mode of an appliance changes",
+        "fr": "Le mode d’un appareil change",
+        "de": "Der Modus eines Geräts ändert sich",
+        "es": "Cambia el modo de un aparato"
+      },
+      "description": {
+        "en": "Changed by the Voltalis program or in the MyVoltalis app (never by Gladys itself), seen at the next reading.",
+        "fr": "Changé par la programmation Voltalis ou dans l’application MyVoltalis (jamais par Gladys elle-même), vu au relevé suivant.",
+        "de": "Durch das Voltalis-Programm oder in der MyVoltalis-App geändert (nie durch Gladys selbst), sichtbar bei der nächsten Abfrage.",
+        "es": "Cambiado por la programación Voltalis o en la app MyVoltalis (nunca por la propia Gladys), visto en la siguiente lectura."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Appliance",
+            "fr": "Appareil",
+            "de": "Gerät",
+            "es": "Aparato"
+          },
+          "description": {
+            "en": "Empty: every appliance.",
+            "fr": "Vide : tous les appareils.",
+            "de": "Leer: alle Geräte.",
+            "es": "Vacío: todos los aparatos."
+          }
+        },
+        {
+          "key": "mode",
+          "type": "select",
+          "label": {
+            "en": "New mode",
+            "fr": "Nouveau mode",
+            "de": "Neuer Modus",
+            "es": "Nuevo modo"
+          },
+          "description": {
+            "en": "Empty: any mode.",
+            "fr": "Vide : n’importe quel mode.",
+            "de": "Leer: jeder Modus.",
+            "es": "Vacío: cualquier modo."
+          },
+          "options": [
+            {
+              "value": "comfort",
+              "label": {
+                "en": "Comfort",
+                "fr": "Confort",
+                "de": "Komfort",
+                "es": "Confort"
+              }
+            },
+            {
+              "value": "eco",
+              "label": {
+                "en": "Eco",
+                "fr": "Éco",
+                "de": "Eco",
+                "es": "Eco"
+              }
+            },
+            {
+              "value": "frost",
+              "label": {
+                "en": "Frost protection",
+                "fr": "Hors-gel",
+                "de": "Frostschutz",
+                "es": "Antihielo"
+              }
+            },
+            {
+              "value": "temperature",
+              "label": {
+                "en": "Temperature",
+                "fr": "Température",
+                "de": "Temperatur",
+                "es": "Temperatura"
+              }
+            },
+            {
+              "value": "normal",
+              "label": {
+                "en": "On (water heater, relay)",
+                "fr": "Marche (chauffe-eau, relais)",
+                "de": "Ein (Warmwasser, Relais)",
+                "es": "Encendido (calentador, relé)"
+              }
+            },
+            {
+              "value": "off",
+              "label": {
+                "en": "Off",
+                "fr": "Arrêt",
+                "de": "Aus",
+                "es": "Apagado"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "device",
+          "type": "string",
+          "label": {
+            "en": "Appliance (external id)",
+            "fr": "Appareil (identifiant externe)",
+            "de": "Gerät (externe ID)",
+            "es": "Aparato (id externo)"
+          }
+        },
+        {
+          "key": "device_name",
+          "type": "string",
+          "label": {
+            "en": "Appliance name",
+            "fr": "Nom de l’appareil",
+            "de": "Gerätename",
+            "es": "Nombre del aparato"
+          }
+        },
+        {
+          "key": "mode",
+          "type": "string",
+          "label": {
+            "en": "Mode (comfort, eco, frost, temperature, normal, off)",
+            "fr": "Mode (comfort, eco, frost, temperature, normal, off)",
+            "de": "Modus (comfort, eco, frost, temperature, normal, off)",
+            "es": "Modo (comfort, eco, frost, temperature, normal, off)"
+          }
+        },
+        {
+          "key": "previous_mode",
+          "type": "string",
+          "label": {
+            "en": "Previous mode",
+            "fr": "Mode précédent",
+            "de": "Vorheriger Modus",
+            "es": "Modo anterior"
+          }
+        },
+        {
+          "key": "manual",
+          "type": "boolean",
+          "label": {
+            "en": "Manual setting (not the program)",
+            "fr": "Réglage manuel (pas la programmation)",
+            "de": "Manuelle Einstellung (nicht das Programm)",
+            "es": "Ajuste manual (no la programación)"
+          }
+        },
+        {
+          "key": "target_temperature",
+          "type": "number",
+          "label": {
+            "en": "Setpoint in temperature mode (°C)",
+            "fr": "Consigne en mode température (°C)",
+            "de": "Sollwert im Temperaturmodus (°C)",
+            "es": "Consigna en modo temperatura (°C)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "appliance_fault",
+      "label": {
+        "en": "An appliance goes in fault",
+        "fr": "Un appareil passe en défaut",
+        "de": "Ein Gerät meldet eine Störung",
+        "es": "Un aparato entra en avería"
+      },
+      "description": {
+        "en": "The self-diagnosis of Voltalis is no longer OK: fault, no consumption seen or no communication.",
+        "fr": "L’autodiagnostic Voltalis n’est plus OK : défaut, aucune consommation vue ou pas de communication.",
+        "de": "Die Selbstdiagnose von Voltalis ist nicht mehr OK: Störung, kein Verbrauch erkannt oder keine Verbindung.",
+        "es": "El autodiagnóstico de Voltalis ya no es OK: avería, sin consumo detectado o sin comunicación."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Appliance",
+            "fr": "Appareil",
+            "de": "Gerät",
+            "es": "Aparato"
+          },
+          "description": {
+            "en": "Empty: every appliance.",
+            "fr": "Vide : tous les appareils.",
+            "de": "Leer: alle Geräte.",
+            "es": "Vacío: todos los aparatos."
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "device",
+          "type": "string",
+          "label": {
+            "en": "Appliance (external id)",
+            "fr": "Appareil (identifiant externe)",
+            "de": "Gerät (externe ID)",
+            "es": "Aparato (id externo)"
+          }
+        },
+        {
+          "key": "device_name",
+          "type": "string",
+          "label": {
+            "en": "Appliance name",
+            "fr": "Nom de l’appareil",
+            "de": "Gerätename",
+            "es": "Nombre del aparato"
+          }
+        },
+        {
+          "key": "status",
+          "type": "string",
+          "label": {
+            "en": "Self-diagnosis (ok, nok, no_consumption, comm_error)",
+            "fr": "Autodiagnostic (ok, nok, no_consumption, comm_error)",
+            "de": "Selbstdiagnose (ok, nok, no_consumption, comm_error)",
+            "es": "Autodiagnóstico (ok, nok, no_consumption, comm_error)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "appliance_recovered",
+      "label": {
+        "en": "An appliance is back to normal",
+        "fr": "Un appareil revient à la normale",
+        "de": "Ein Gerät ist wieder in Ordnung",
+        "es": "Un aparato vuelve a la normalidad"
+      },
+      "description": {
+        "en": "The self-diagnosis of Voltalis is OK again.",
+        "fr": "L’autodiagnostic Voltalis est de nouveau OK.",
+        "de": "Die Selbstdiagnose von Voltalis ist wieder OK.",
+        "es": "El autodiagnóstico de Voltalis vuelve a ser OK."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Appliance",
+            "fr": "Appareil",
+            "de": "Gerät",
+            "es": "Aparato"
+          },
+          "description": {
+            "en": "Empty: every appliance.",
+            "fr": "Vide : tous les appareils.",
+            "de": "Leer: alle Geräte.",
+            "es": "Vacío: todos los aparatos."
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "device",
+          "type": "string",
+          "label": {
+            "en": "Appliance (external id)",
+            "fr": "Appareil (identifiant externe)",
+            "de": "Gerät (externe ID)",
+            "es": "Aparato (id externo)"
+          }
+        },
+        {
+          "key": "device_name",
+          "type": "string",
+          "label": {
+            "en": "Appliance name",
+            "fr": "Nom de l’appareil",
+            "de": "Gerätename",
+            "es": "Nombre del aparato"
+          }
+        },
+        {
+          "key": "status",
+          "type": "string",
+          "label": {
+            "en": "Self-diagnosis (ok, nok, no_consumption, comm_error)",
+            "fr": "Autodiagnostic (ok, nok, no_consumption, comm_error)",
+            "de": "Selbstdiagnose (ok, nok, no_consumption, comm_error)",
+            "es": "Autodiagnóstico (ok, nok, no_consumption, comm_error)"
+          }
+        },
+        {
+          "key": "previous_status",
+          "type": "string",
+          "label": {
+            "en": "Previous self-diagnosis",
+            "fr": "Autodiagnostic précédent",
+            "de": "Vorherige Selbstdiagnose",
+            "es": "Autodiagnóstico anterior"
+          }
+        }
+      ]
+    }
+  ],
+  "scene_actions": [
+    {
+      "key": "set_manual",
+      "timeout_seconds": 90,
+      "label": {
+        "en": "Set a manual mode",
+        "fr": "Passer en mode manuel",
+        "de": "Manuellen Modus setzen",
+        "es": "Poner un modo manual"
+      },
+      "description": {
+        "en": "One appliance or every appliance that has this mode, for a duration or until further notice.",
+        "fr": "Un appareil ou tous ceux qui ont ce mode, pour une durée ou jusqu’à nouvel ordre.",
+        "de": "Ein Gerät oder alle mit diesem Modus, für eine Dauer oder bis auf Weiteres.",
+        "es": "Un aparato o todos los que tienen ese modo, durante un tiempo o hasta nuevo aviso."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Appliance",
+            "fr": "Appareil",
+            "de": "Gerät",
+            "es": "Aparato"
+          },
+          "description": {
+            "en": "Empty: every appliance.",
+            "fr": "Vide : tous les appareils.",
+            "de": "Leer: alle Geräte.",
+            "es": "Vacío: todos los aparatos."
+          }
+        },
+        {
+          "key": "mode",
+          "type": "select",
+          "required": true,
+          "label": {
+            "en": "Mode",
+            "fr": "Mode",
+            "de": "Modus",
+            "es": "Modo"
+          },
+          "options": [
+            {
+              "value": "comfort",
+              "label": {
+                "en": "Comfort",
+                "fr": "Confort",
+                "de": "Komfort",
+                "es": "Confort"
+              }
+            },
+            {
+              "value": "eco",
+              "label": {
+                "en": "Eco",
+                "fr": "Éco",
+                "de": "Eco",
+                "es": "Eco"
+              }
+            },
+            {
+              "value": "frost",
+              "label": {
+                "en": "Frost protection",
+                "fr": "Hors-gel",
+                "de": "Frostschutz",
+                "es": "Antihielo"
+              }
+            },
+            {
+              "value": "temperature",
+              "label": {
+                "en": "Temperature",
+                "fr": "Température",
+                "de": "Temperatur",
+                "es": "Temperatura"
+              }
+            },
+            {
+              "value": "normal",
+              "label": {
+                "en": "On (water heater, relay)",
+                "fr": "Marche (chauffe-eau, relais)",
+                "de": "Ein (Warmwasser, Relais)",
+                "es": "Encendido (calentador, relé)"
+              }
+            },
+            {
+              "value": "off",
+              "label": {
+                "en": "Off",
+                "fr": "Arrêt",
+                "de": "Aus",
+                "es": "Apagado"
+              }
+            }
+          ],
+          "default": "eco"
+        },
+        {
+          "key": "temperature",
+          "type": "number",
+          "min": 7,
+          "max": 30,
+          "label": {
+            "en": "Temperature (°C)",
+            "fr": "Température (°C)",
+            "de": "Temperatur (°C)",
+            "es": "Temperatura (°C)"
+          },
+          "description": {
+            "en": "For the temperature mode only, 7 to 30 °C by half degrees.",
+            "fr": "Pour le mode température seulement, de 7 à 30 °C par demi-degré.",
+            "de": "Nur für den Temperaturmodus, 7 bis 30 °C in halben Grad.",
+            "es": "Solo para el modo temperatura, de 7 a 30 °C por medios grados."
+          }
+        },
+        {
+          "key": "hours",
+          "type": "number",
+          "min": 0,
+          "max": 720,
+          "label": {
+            "en": "Duration (hours)",
+            "fr": "Durée (heures)",
+            "de": "Dauer (Stunden)",
+            "es": "Duración (horas)"
+          },
+          "description": {
+            "en": "Empty or 0: until further notice.",
+            "fr": "Vide ou 0 : jusqu’à nouvel ordre.",
+            "de": "Leer oder 0: bis auf Weiteres.",
+            "es": "Vacío o 0: hasta nuevo aviso."
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "key": "count",
+          "type": "number",
+          "label": {
+            "en": "Appliances changed",
+            "fr": "Appareils changés",
+            "de": "Geänderte Geräte",
+            "es": "Aparatos cambiados"
+          }
+        },
+        {
+          "key": "failed",
+          "type": "number",
+          "label": {
+            "en": "Appliances refused",
+            "fr": "Appareils refusés",
+            "de": "Abgelehnte Geräte",
+            "es": "Aparatos rechazados"
+          }
+        }
+      ]
+    },
+    {
+      "key": "back_to_program",
+      "timeout_seconds": 90,
+      "label": {
+        "en": "Go back to the program",
+        "fr": "Revenir à la programmation",
+        "de": "Zurück zum Programm",
+        "es": "Volver a la programación"
+      },
+      "description": {
+        "en": "Ends the manual setting of one appliance, or of every appliance in manual mode.",
+        "fr": "Met fin au réglage manuel d’un appareil, ou de tous les appareils en mode manuel.",
+        "de": "Beendet die manuelle Einstellung eines Geräts oder aller Geräte im manuellen Modus.",
+        "es": "Termina el ajuste manual de un aparato, o de todos los aparatos en modo manual."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Appliance",
+            "fr": "Appareil",
+            "de": "Gerät",
+            "es": "Aparato"
+          },
+          "description": {
+            "en": "Empty: every appliance.",
+            "fr": "Vide : tous les appareils.",
+            "de": "Leer: alle Geräte.",
+            "es": "Vacío: todos los aparatos."
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "key": "count",
+          "type": "number",
+          "label": {
+            "en": "Appliances changed",
+            "fr": "Appareils changés",
+            "de": "Geänderte Geräte",
+            "es": "Aparatos cambiados"
+          }
+        },
+        {
+          "key": "failed",
+          "type": "number",
+          "label": {
+            "en": "Appliances refused",
+            "fr": "Appareils refusés",
+            "de": "Abgelehnte Geräte",
+            "es": "Aparatos rechazados"
+          }
+        }
+      ]
+    },
+    {
+      "key": "set_program",
+      "timeout_seconds": 60,
+      "label": {
+        "en": "Switch a program or a quick setting",
+        "fr": "Activer ou désactiver un programme",
+        "de": "Programm oder Schnelleinstellung schalten",
+        "es": "Activar o desactivar un programa"
+      },
+      "description": {
+        "en": "The quick settings of MyVoltalis (at home, short or long absence) or one of your programs, by its name.",
+        "fr": "Les réglages rapides de MyVoltalis (à la maison, absence courte ou longue) ou l’un de vos programmes, par son nom.",
+        "de": "Die Schnelleinstellungen von MyVoltalis (zu Hause, kurze oder lange Abwesenheit) oder eines Ihrer Programme nach Name.",
+        "es": "Los ajustes rápidos de MyVoltalis (en casa, ausencia corta o larga) o uno de sus programas, por su nombre."
+      },
+      "fields": [
+        {
+          "key": "program",
+          "type": "select",
+          "required": true,
+          "label": {
+            "en": "Program",
+            "fr": "Programme",
+            "de": "Programm",
+            "es": "Programa"
+          },
+          "default": "athome",
+          "options": [
+            {
+              "value": "athome",
+              "label": {
+                "en": "Quick setting: at home",
+                "fr": "Réglage rapide : à la maison",
+                "de": "Schnelleinstellung: zu Hause",
+                "es": "Ajuste rápido: en casa"
+              }
+            },
+            {
+              "value": "shortleave",
+              "label": {
+                "en": "Quick setting: short absence",
+                "fr": "Réglage rapide : absence courte",
+                "de": "Schnelleinstellung: kurze Abwesenheit",
+                "es": "Ajuste rápido: ausencia corta"
+              }
+            },
+            {
+              "value": "longleave",
+              "label": {
+                "en": "Quick setting: long absence",
+                "fr": "Réglage rapide : absence longue",
+                "de": "Schnelleinstellung: lange Abwesenheit",
+                "es": "Ajuste rápido: ausencia larga"
+              }
+            },
+            {
+              "value": "user",
+              "label": {
+                "en": "One of my programs (name below)",
+                "fr": "Un de mes programmes (nom ci-dessous)",
+                "de": "Eines meiner Programme (Name unten)",
+                "es": "Uno de mis programas (nombre abajo)"
+              }
+            }
+          ]
+        },
+        {
+          "key": "name",
+          "type": "string",
+          "label": {
+            "en": "Program name",
+            "fr": "Nom du programme",
+            "de": "Programmname",
+            "es": "Nombre del programa"
+          },
+          "description": {
+            "en": "As written in MyVoltalis; only for “One of my programs”.",
+            "fr": "Tel qu’écrit dans MyVoltalis ; seulement pour « Un de mes programmes ».",
+            "de": "Wie in MyVoltalis geschrieben; nur für „Eines meiner Programme“.",
+            "es": "Tal como está escrito en MyVoltalis; solo para «Uno de mis programas»."
+          }
+        },
+        {
+          "key": "state",
+          "type": "select",
+          "required": true,
+          "label": {
+            "en": "State",
+            "fr": "État",
+            "de": "Zustand",
+            "es": "Estado"
+          },
+          "options": [
+            {
+              "value": "on",
+              "label": {
+                "en": "On",
+                "fr": "Activé",
+                "de": "Ein",
+                "es": "Activado"
+              }
+            },
+            {
+              "value": "off",
+              "label": {
+                "en": "Off",
+                "fr": "Désactivé",
+                "de": "Aus",
+                "es": "Desactivado"
+              }
+            }
+          ],
+          "default": "on"
+        }
+      ],
+      "outputs": [
+        {
+          "key": "program",
+          "type": "string",
+          "label": {
+            "en": "Program switched",
+            "fr": "Programme changé",
+            "de": "Geschaltetes Programm",
+            "es": "Programa cambiado"
+          }
+        },
+        {
+          "key": "enabled",
+          "type": "boolean",
+          "label": {
+            "en": "Enabled",
+            "fr": "Activé",
+            "de": "Aktiviert",
+            "es": "Activado"
+          }
+        }
+      ]
+    },
+    {
+      "key": "refresh",
+      "timeout_seconds": 60,
+      "label": {
+        "en": "Read the Voltalis appliances now",
+        "fr": "Relever les appareils Voltalis maintenant",
+        "de": "Voltalis-Geräte jetzt abfragen",
+        "es": "Leer los aparatos Voltalis ahora"
+      },
+      "description": {
+        "en": "Reads every appliance now instead of waiting for the next reading (once per 30 seconds at most).",
+        "fr": "Relève tous les appareils maintenant au lieu d’attendre le prochain relevé (une fois par 30 secondes au plus).",
+        "de": "Fragt alle Geräte jetzt ab, statt auf die nächste Abfrage zu warten (höchstens alle 30 Sekunden).",
+        "es": "Lee todos los aparatos ahora en lugar de esperar a la próxima lectura (una vez cada 30 segundos como máximo)."
+      },
+      "outputs": [
+        {
+          "key": "appliances",
+          "type": "number",
+          "label": {
+            "en": "Appliances",
+            "fr": "Appareils",
+            "de": "Geräte",
+            "es": "Aparatos"
+          }
+        },
+        {
+          "key": "manual",
+          "type": "number",
+          "label": {
+            "en": "Appliances in manual mode",
+            "fr": "Appareils en mode manuel",
+            "de": "Geräte im manuellen Modus",
+            "es": "Aparatos en modo manual"
+          }
+        },
+        {
+          "key": "power",
+          "type": "number",
+          "label": {
+            "en": "Power of the home (W)",
+            "fr": "Puissance du logement (W)",
+            "de": "Leistung des Zuhauses (W)",
+            "es": "Potencia de la vivienda (W)"
+          }
+        },
+        {
+          "key": "energy_today",
+          "type": "number",
+          "label": {
+            "en": "Energy today (kWh)",
+            "fr": "Énergie aujourd’hui (kWh)",
+            "de": "Energie heute (kWh)",
+            "es": "Energía hoy (kWh)"
+          }
+        }
+      ]
+    }
+  ]
+}

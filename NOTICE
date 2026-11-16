@@ -1,0 +1,26 @@
+Gladys Voltalis integration
+Copyright 2026 William Deren
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+It calls the service behind the MyVoltalis app and web site
+(https://api.myvoltalis.com) with the e-mail and the password of the user's
+MyVoltalis account. Voltalis publishes no documentation for it. Voltalis and
+MyVoltalis are trademarks of Voltalis SA; this integration is not affiliated
+with nor endorsed by Voltalis.
+
+Protocol knowledge
+------------------
+The routes, the fields of the answers and the way a manual setting is written
+come from three community projects for Home Assistant, all under the MIT
+License:
+  - voltalis-homeassistant by ppaglier
+    (https://github.com/ppaglier/voltalis-homeassistant);
+  - ha-voltalis by Johann Delahayes
+    (https://github.com/jdelahayes/ha-voltalis);
+  - the Voltalis bridge of ha-addons by Zao Soula
+    (https://github.com/zaosoula/ha-addons).
+The answer to wrong credentials (401,
+"backend.error.subscriber.badcredentials") was checked against the API itself.
+No code was copied from these projects: this integration is an independent
+JavaScript implementation of the same API.
